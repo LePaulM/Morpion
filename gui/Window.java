@@ -33,12 +33,9 @@ public class Window {
         frame.getContentPane().add(scorePanel, BorderLayout.NORTH);
 
         // Add boxes
-        for (int i=0; i<size;i++) {
-            for (int j = 0; j < size; j++) {
-                Box box = new Box();
-                //frame.getContentPane().add(box);
-            }
-        }
+        Case button = new Case(0,0);
+        frame.getContentPane().add(button);
+
 
         // Size the frame.
         frame.setSize(500, 500);

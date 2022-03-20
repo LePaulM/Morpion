@@ -2,6 +2,7 @@ package gui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 public class Window {
     int size = 3;
@@ -42,7 +43,7 @@ public class Window {
             for ( int j=0; j<size; j++) {
                 Case button = new Case(i,j);
                 gamePanel.add(button);
-                System.out.println("case " + i + ", " + j);
+                
             }
         }
         
@@ -56,5 +57,12 @@ public class Window {
         // Show it.
         frame.setVisible(true);
     }
+
+    public void windowOpened(WindowEvent e) {}
+    public void windowActivated(WindowEvent e) {}
+    public void windowIconified(WindowEvent e) {}
+    public void windowDeiconified(WindowEvent e) {}
+    public void windowDeactivated(WindowEvent e) {}
+    public void windowClosed(WindowEvent e) {}
 
 }

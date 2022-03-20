@@ -51,9 +51,7 @@ public class Window {
 
         // Size the frame.
         frame.setSize(500, 500);
-
-
-
+        
         // Show it.
         frame.setVisible(true);
     }

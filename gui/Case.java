@@ -11,6 +11,10 @@ public class Case extends JButton {
     public Case(int x, int y) {
         this.x = x;
         this.y = y;
-        this.addActionListener(this.gmCase = new GMCase(this.x,this.y));
+        this.addActionListener(l);
+    }
+
+    public String toString() {
+        return "case n° : " + this.x + ", " + this.y;
     }
 }

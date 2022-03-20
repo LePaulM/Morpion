@@ -42,6 +42,11 @@ public class Window {
         for ( int i=0; i<size; i++) {
             for ( int j=0; j<size; j++) {
                 Case button = new Case(i,j);
+                button.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e){  
+                        button.toString();  
+                        }  
+                    });  
                 gamePanel.add(button);
                 
             }
@@ -51,7 +56,7 @@ public class Window {
 
         // Size the frame.
         frame.setSize(500, 500);
-        
+
         // Show it.
         frame.setVisible(true);
     }

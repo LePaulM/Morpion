@@ -11,7 +11,6 @@ public class Case extends JButton {
     public Case(int x, int y) {
         this.x = x;
         this.y = y;
-        this.addActionListener(l);
     }
 
     public String toString() {

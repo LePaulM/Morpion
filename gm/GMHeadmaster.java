@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
-public class GMHeadmaster implements ActionListener {
+public class GMHeadmaster {
     private int nb_parties = 0;
     private int scoreP1 = 0;
     private int scoreP2 = 0;
@@ -20,11 +20,6 @@ public class GMHeadmaster implements ActionListener {
         
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        
-        
-    }
 
 
 

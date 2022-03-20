@@ -20,7 +20,7 @@ public class Window {
         // Create panel with score
         JLabel P1Label = new JLabel("Player 1");
         P1Label.setSize(150,50);
-        JLabel score = new JLabel("0");
+        JLabel score = new JLabel(" 0 - 0 ");
         score.setSize(50,50);
         JLabel P2Label = new JLabel("Player 2");
         P2Label.setSize(150,50);
@@ -31,10 +31,21 @@ public class Window {
         scorePanel.add(P2Label);
 
         frame.getContentPane().add(scorePanel, BorderLayout.NORTH);
+        
+        // Add game panel
+        JPanel gamePanel = new JPanel();
+        gamePanel.setLayout(new GridLayout(size,size));
+        frame.getContentPane().add(gamePanel);
 
         // Add boxes
-        Case button = new Case(0,0);
-        frame.getContentPane().add(button);
+        for ( int i=0; i<size; i++) {
+            for ( int j=0; j<size; j++) {
+                Case button = new Case(i,j);
+                gamePanel.add(button);
+                System.out.println("case " + i + ", " + j);
+            }
+        }
+        
 
 
         // Size the frame.

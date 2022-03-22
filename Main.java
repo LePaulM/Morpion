@@ -14,7 +14,8 @@ import gui.*;
 /**     2.  GM game master
  * Validation d'une case
  * Vérification du plateau
- * 
+ * Créer une classe gameBoardManagement qui permettra de gérer l'ajout de cases sur un plateau virtuel
+ * GMHeadmaster doit gérer uniquement les tours, les conditions de victoire
  * 
  * 
 */
@@ -22,7 +23,6 @@ import gui.*;
 /**
  *      3.
  * Liaison entre le GUI et le GM
- * 
  */
 
 

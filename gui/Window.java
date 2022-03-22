@@ -44,7 +44,7 @@ public class Window {
                 Case button = new Case(i,j);
                 button.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e){  
-                        button.toString();  
+                        button.clic();  
                         }  
                     });  
                 gamePanel.add(button);

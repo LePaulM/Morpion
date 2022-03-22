@@ -10,17 +10,45 @@ public class GMHeadmaster {
     private int nb_parties = 0;
     private int scoreP1 = 0;
     private int scoreP2 = 0;
+    private int checkP1 = 0;
+    private int checkP2 = 0;
     private ArrayList<GMCase> gameBoard = new ArrayList<GMCase>();
+    GMBoardManagement gmBoardManagemer = new GMBoardManagement();
 
 
     public GMHeadmaster() {
+
     }
 
-    protected void checkGameBoard(int x, int y) {
-        
+    public void turn() {
+
     }
 
+    public void checkGameBoard(int player, int x, int y) {
+        // Checking victory for player 1
+        if (player == 1 ) {
+            checkP1 = checkP1 + x + y;
+            if (checkP1 % 3 == 0) {
+                // Fin de partie
+             } else {
+                 // Tour suivant
+             }
+        // Checking victory for player 2
+        } else if (player == 2 ) {
+            checkP2 = checkP2 + x + y;
+            if (checkP2 % 3 == 0) {
+                // Fin de partie
+             } else {
+                 // Tour suivant
+             }
+        } else {
+            System.out.println("Error : player unknown."); ;
+        }
+    }
 
+    public void endGame() {
+
+    }
 
 
     //          ACTIONS ON GAMEBOARD

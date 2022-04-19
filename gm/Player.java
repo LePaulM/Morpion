@@ -56,7 +56,7 @@ public class Player {
     }
 
     public boolean checkVictory() {
-        if (this.score % 3 == 0) {
+        if (Math.floorMod(this.getPoints(), 9) == 0 || Math.floorMod(this.getPoints(), 12) == 0) {
             return true;
         } else {
             return false;

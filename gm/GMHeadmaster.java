@@ -14,16 +14,18 @@ public class GMHeadmaster {
     private int scoreP1 = 0;
     private int scoreP2 = 0;
     private GMBoardManagement gmBoardManager = new GMBoardManagement();
-    private int playerTurn = 1;
+    private int playerTurn = 0;
     ArrayList<Player> players = new ArrayList<Player>();
-    Player player = new Player(0, null, "X", 0, 0);
-
-    public GMHeadmaster(int nbPlayers, int size ) {
-        nbPlayers--;
+    Player player = new Player(1, null, "X", 0, 0);
+    
+    public GMHeadmaster(int nbPlayers, int size, boolean playertwo ) {
+        Player newPlayer;
+        player.setName("name");
         
+        // Initiating window
         Window window;
         // pour plus tard : faire un objet plutot que plusieurs JLabel en vrac comme ça
-        JLabel P1Label = new JLabel("Player 1");
+        JLabel P1Label = new JLabel(player.getName());
         JLabel P2Label = new JLabel("Player 2");
         JLabel score = new JLabel(scoreP1+" - "+scoreP2);
         JPanel gameplanel = new JPanel();
@@ -34,7 +36,8 @@ public class GMHeadmaster {
                 gameplanel.add(button);
                 ActionListener actionListener = new ActionListener() {
                     public void actionPerformed(ActionEvent event) {
-                        clic(button.GetX(),button.GetY());
+
+                        clic(button);
                     }
                  };
                  button.setActionCommand("FirstButton");
@@ -43,47 +46,49 @@ public class GMHeadmaster {
             }
         }
         window = new Window(size,P1Label, score,P2Label,gameplanel);
+        
+        // Initiating game
+        nbPlayers--;
+        players.add(player);
+        if (playertwo) {
+            // pour remplir le champ name il faut mettre 
+            newPlayer = new Player(2, null, "O", 0, 0);
+        } else {
+            newPlayer = new Player(2, "Player2", "O", 0, 0);
+        }
+        players.add(newPlayer);
     }
 
     public void addCase(Case button) {
         gmBoardManager.addCase(button.GetGMCase());
     }
 
-    public void turn() {
+    public void clic(Case button) {
+        playerTurn = Math.floorMod(playerTurn, 2);
 
-        this.playerTurn = player.id;
+        // on ne factorise pas turn() car il faut que cela s'initialise au moment du clic
+        // peut-être mettre turn dans l'actionlistener ?
+        Player playing = players.get(playerTurn);
+        
 
-    }
+        // actions on button
+        String symbol = playing.getSymbol();
+        button.setText(symbol);
+        button.setEnabled(false);
 
-    public void clic(int x, int y) {
+        
+        
+        playing.setPoints(playing.getPoints()+button.GetX()+button.GetY()+2);
+        System.out.println(playing.getPoints());
 
-        System.out.println(gmBoardManager.getCase(x, y).toString());
-
-        turn();
-    }
-
-    public void checkGameBoard(Player player, int x, int y) {
-        // Checking victory for player 1
-        if (player.getId() == 1 ) {
-            player.setPoints(player.getPoints() + x + y);
-            if (player.getPoints() % 3 == 0) {
-                // Fin de partie
-                this.endGame();
-             } else {
-                 // Tour suivant
-             }
-        // Checking victory for player 2
-        } else if (player.getId() == 2 ) {
-            player.setPoints(player.getPoints() + x + y);
-            if (player.getPoints() % 3 == 0) {
-                // Fin de partie
-                this.endGame();
-             } else {
-                 // Tour suivant
-             }
-        } else {
-            System.out.println("Error : player unknown."); ;
+        // checking vitcory
+        
+        if (playing.checkVictory())  {
+            endGame();
         }
+        
+    
+        playerTurn++;
     }
 
     public void endGame() {

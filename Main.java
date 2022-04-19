@@ -30,6 +30,6 @@ public class Main {
     public static void main (String[] args){
         System.out.println("Welcome to my tic-tac-toe !\nPaul Miancien - 2022");
 
-        GMHeadmaster gmHeadmaster = new GMHeadmaster(2,3);
+        GMHeadmaster gmHeadmaster = new GMHeadmaster(2,3, true);
     }
 }

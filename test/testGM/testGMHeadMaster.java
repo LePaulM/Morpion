@@ -17,20 +17,19 @@ public class testGMHeadMaster {
         return gmCaseArray;      
     }
 
-    public GMHeadmaster GMHeadmasterFactory() {
-        GMHeadmaster gmheadmaster = new GMHeadmaster();
+    public GMBoardManagement GMBoardManagemerFactory() {
+        GMBoardManagement gmheadmaster = new GMBoardManagement();
         ArrayList<GMCase> gmCases = GMCaseFactory();
 
         for (GMCase cases : gmCases) {
             gmheadmaster.addCase(cases);
         }
-        
         return gmheadmaster;
     }
 
     protected void testCheckGameBoard() {
         // Arrange
-        GMHeadmaster gmheadmaster = GMHeadmasterFactory();
+        GMBoardManagement gmheadmaster = GMBoardManagemerFactory();
         int testValue;
         // Act
         

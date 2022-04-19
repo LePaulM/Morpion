@@ -1,13 +1,11 @@
 package gm;
 
 import gui.*;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+
 import java.util.List;
 import org.javatuples.Pair;
 
-public class GMCase extends GMHeadmaster {
+public class GMCase {
     private boolean isEmpty = true;
     private int x,y = 0;
 
@@ -16,7 +14,6 @@ public class GMCase extends GMHeadmaster {
     public GMCase(int x, int y) {
         this.x = x;
         this.y = y;
-        System.out.println("case n° : " + x + ", " + y);
     }
 
     public int GetX() {
@@ -25,6 +22,10 @@ public class GMCase extends GMHeadmaster {
 
     public int GetY() {
         return this.y;
+    }
+
+    public boolean GetThisEmpty() {
+        return this.isEmpty;
     }
 
     public List<Object> GetCoordinates() {
@@ -43,5 +44,12 @@ public class GMCase extends GMHeadmaster {
     public void SetCoordinates(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    public String clic() {
+        this.isEmpty=false;
+        String sign = null;
+
+        return sign;
     }
 }

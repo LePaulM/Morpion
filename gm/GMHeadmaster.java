@@ -64,10 +64,10 @@ public class GMHeadmaster {
     }
 
     public void clic(Case button) {
+        // Déterminer à qui le tour
         playerTurn = Math.floorMod(playerTurn, 2);
-
-        // on ne factorise pas turn() car il faut que cela s'initialise au moment du clic
-        // peut-être mettre turn dans l'actionlistener ?
+        
+        // récupérer l'objet Player qui fait l'action
         Player playing = players.get(playerTurn);
         
 
@@ -77,12 +77,11 @@ public class GMHeadmaster {
         button.setEnabled(false);
 
         
-        
-        playing.setPoints(playing.getPoints()+button.GetX()+button.GetY()+2);
-        System.out.println(playing.getPoints());
+        // les points sont la somme des X et Y de toutes les case occupées par le joueur
+        // pour l'instant ça marche pas
+        playing.setPoints(playing.getPoints()+button.GetX()+button.GetY());
 
         // checking vitcory
-        
         if (playing.checkVictory())  {
             endGame();
         }

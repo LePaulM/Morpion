@@ -4,15 +4,15 @@ public class Player {
     int id;
     String name;
     String symbol;
-    int points = 0;
     int score;
+
     
-    public Player(int id, String name, String symbol, int points, int score) {
+    public Player(int id, String name, String symbol, int score, int size) {
         this.id = id;
         this.name = name;
         this.symbol = symbol;
-        this.points = points;
         this.score = score;
+
     }
 
     public int getId() {
@@ -39,14 +39,6 @@ public class Player {
         this.symbol = symbol;
     }
 
-    public int getPoints() {
-        return points;
-    }
-
-    public void setPoints(int points) {
-        this.points = points;
-    }
-
     public int getScore() {
         return score;
     }
@@ -54,13 +46,4 @@ public class Player {
     public void setScore(int score) {
         this.score = score;
     }
-
-    public boolean checkVictory() {
-        if (Math.floorMod(this.getPoints(), 9) == 0 || Math.floorMod(this.getPoints(), 12) == 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    
 }

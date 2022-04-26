@@ -10,21 +10,20 @@ public class Case extends JButton {
     public Case() {}
 
     public Case(int x, int y) {
-        this.x = x;
-        this.y = y;
+        this.x = x + 1;
+        this.y = y + 1;
         this.gmCase = new GMCase(x,y);
     }
 
-    public void clic() {
-        
+    public void clic(String symbol) {
         this.setEnabled(false);
-        // this.setText("X");
-        System.out.println(this.toString());
+        this.setText(symbol);
+        this.gmCase.SetIsEmpty(false);
     }
 
 
     public String toString() {
-        return "case n° : " + this.getX() + ", " + this.getY();
+        return "case n° : " + this.GetX() + ", " + this.GetY();
     }
 
     public int GetX() {

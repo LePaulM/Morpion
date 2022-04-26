@@ -13,15 +13,19 @@ public class GMHeadmaster {
     private int nb_parties = 0;
     private int scoreP1 = 0;
     private int scoreP2 = 0;
+    private int size;
     private GMBoardManagement gmBoardManager = new GMBoardManagement();
     private int playerTurn = 0;
     ArrayList<Player> players = new ArrayList<Player>();
-    Player player = new Player(1, null, "X", 0, 0);
+    
     
     public GMHeadmaster(int nbPlayers, int size, boolean playertwo ) {
+        Player player = new Player(1, null, "X", 0, size);
         Player newPlayer;
-        player.setName("name");
+        player.setName("Player1");
         
+        this.size = size;
+
         // Initiating window
         Window window;
         // pour plus tard : faire un objet plutot que plusieurs JLabel en vrac comme ça
@@ -32,29 +36,31 @@ public class GMHeadmaster {
         for (int i = 0; i<size; i++) {
             for (int j = 0; j <size; j++) {
                 Case button = new Case(i,j);
-                addCase(button);
+                gmBoardManager.addCase(button.GetGMCase());
                 gameplanel.add(button);
                 ActionListener actionListener = new ActionListener() {
                     public void actionPerformed(ActionEvent event) {
-
                         clic(button);
                     }
                  };
                  button.setActionCommand("FirstButton");
                  button.addActionListener(actionListener);
+                 System.out.println(button.GetGMCase());
                  
             }
         }
-        window = new Window(size,P1Label, score,P2Label,gameplanel);
+        window = new Window(size,P1Label,score,P2Label,gameplanel);
         
+        System.out.println(gmBoardManager.getGameBoard());
+
         // Initiating game
         nbPlayers--;
         players.add(player);
         if (playertwo) {
-            // pour remplir le champ name il faut mettre 
-            newPlayer = new Player(2, null, "O", 0, 0);
+            // pour remplir le champ name il faut mettre qqchose sur la 1ere interface
+            newPlayer = new Player(2, null, "O", 0, size);
         } else {
-            newPlayer = new Player(2, "Player2", "O", 0, 0);
+            newPlayer = new Player(2, "Player2", "O", 0, size);
         }
         players.add(newPlayer);
     }
@@ -73,25 +79,19 @@ public class GMHeadmaster {
 
         // actions on button
         String symbol = playing.getSymbol();
-        button.setText(symbol);
-        button.setEnabled(false);
+        button.clic(symbol);
 
-        
-        // les points sont la somme des X et Y de toutes les case occupées par le joueur
-        // pour l'instant ça marche pas
-        playing.setPoints(playing.getPoints()+button.GetX()+button.GetY());
+
 
         // checking vitcory
-        if (playing.checkVictory())  {
-            endGame();
-        }
+        checkVictory(playing,button);
         
-    
         playerTurn++;
     }
 
-    public void endGame() {
-        System.out.println("Victoire");
+    public void endGame(Player playing) {
+        playing.setScore(playing.getScore()+1);
+        System.out.println("Victoire ! Bien joué " + playing.getName() + " !");
     }
 
     public GMBoardManagement getGMBoardManager() {
@@ -100,6 +100,41 @@ public class GMHeadmaster {
 
     public void setGMBoardManager(GMBoardManagement newGMBoardManager) {
         this.gmBoardManager = newGMBoardManager;
+    }
+
+    public boolean checkVictory(Player playing, Case button) {
+        boolean victory = false;
+
+        // si la case est sur la diagonale 1 on cherche si la diagonale est complete
+        if (button.GetX() == button.GetY()) { 
+            
+            for (int i = 0; i<size;i++) {
+                // si on est sur la case cliquée on passe au suivant
+                if (button.GetX() == gmBoardManager.getCase(i, i).GetX()) {
+                    System.out.println(gmBoardManager.getCase(i, i).GetX());    
+                    continue;
+                }
+                // on vérifie si la case que l'on teste est occupée
+                // si non, on arrete là car cela signifie que la diagonale n'est pas complete 
+                else  if (gmBoardManager.getCase(i, i).GetIsEmpty()) {
+                    System.out.println(gmBoardManager.getCase(i, i).GetX()); 
+                    System.out.println("diagonale 1 - la case est vide"); 
+                    break;
+                } 
+                // si on est sur une case non cliquée et occupée on regarde le symbole
+                // si le symbole n'est pas le même que celui du joueur on arrete
+                else if (gmBoardManager.getCase(i, i).getSymbol() != playing.getSymbol()) {
+                    System.out.println(gmBoardManager.getCase(i, i).getSymbol()); 
+                    System.out.println(playing.getSymbol()); 
+                    System.out.println("diagonale 1 - la diagonale est imprenable"); 
+                    break;
+                } 
+            } 
+        } else {
+            
+        }
+
+        return victory;
     }
 
 }

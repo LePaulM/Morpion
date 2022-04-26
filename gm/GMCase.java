@@ -8,6 +8,7 @@ import org.javatuples.Pair;
 public class GMCase {
     private boolean isEmpty = true;
     private int x,y = 0;
+    private String symbol;
 
     public GMCase() {}
 
@@ -24,8 +25,12 @@ public class GMCase {
         return this.y;
     }
 
-    public boolean GetThisEmpty() {
+    public boolean GetIsEmpty() {
         return this.isEmpty;
+    }
+
+    public void SetIsEmpty(boolean isEmpty) {
+        this.isEmpty = isEmpty;
     }
 
     public List<Object> GetCoordinates() {
@@ -46,10 +51,20 @@ public class GMCase {
         this.y = y;
     }
 
-    public String clic() {
-        this.isEmpty=false;
-        String sign = null;
+    public String getSymbol() {
+        return symbol;
+    }
 
-        return sign;
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
+    }
+
+    public void clic(String symbol) {
+        this.isEmpty=false;
+        this.setSymbol(symbol);
+    }
+
+    public String toString() {
+        return "case n° : " + this.GetX() + ", " + this.GetY();
     }
 }

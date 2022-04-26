@@ -47,14 +47,12 @@ public class GMBoardManagement {
      * @return GMCase object
      */
     public GMCase getCase(int x,int y) {
-        System.out.println(x);
         GMCase returnCase = null;
         for (int i=0; i<gameBoard.size(); i++) {
             if (gameBoard.get(i).GetX() == x && gameBoard.get(i).GetY() == y) {
                 returnCase =  gameBoard.get(i);
             }
         }
-        System.out.println(returnCase.toString());
         if(!Objects.isNull(returnCase)) {
             return returnCase;
         } else {
